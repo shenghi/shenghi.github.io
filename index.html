@@ -3,612 +3,850 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>狼人行动</title>
-    <!-- 网站图标 -->
+    <title>狼人行动 · 终极全息粒子控制台</title>
     <link rel="icon" href="bio.png" type="image/png">
     <style>
-        /* 全局超炫酷科幻暗黑风样式 */
+        /* ==========================================================================
+           1. 核心量子动力学全局样式与极光变量定义
+           ========================================================================== */
+        :root {
+            --bg-deep: #060212;
+            --bg-space: #0b0726;
+            --clr-good: #00f2fe;
+            --clr-good-glow: rgba(0, 242, 254, 0.6);
+            --clr-wolf: #ff2a5f;
+            --clr-wolf-glow: rgba(255, 42, 95, 0.6);
+            --clr-neutral: #ffb800;
+            --clr-neutral-glow: rgba(255, 184, 0, 0.6);
+            --clr-purp: #9333ea;
+            --clr-text: #e2e8f0;
+            --font-cyber: 'Orbitron', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            user-select: none;
+            scroll-behavior: smooth;
+        }
+
+        /* 隐藏滚动条但保留滚动能力 */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(11, 7, 38, 0.5);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--clr-good), var(--clr-purp));
+            border-radius: 4px;
         }
 
         body {
-            background: radial-gradient(circle at center, #150d2a 0%, #07040d 100%);
-            color: #e0e0ff;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-deep);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(147, 51, 234, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 242, 254, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(255, 42, 95, 0.08) 0%, transparent 60%);
+            color: var(--clr-text);
+            font-family: var(--font-cyber);
             min-height: 100vh;
             overflow-x: hidden;
-            padding: 20px;
+            padding: 40px 20px;
             position: relative;
         }
 
-        /* 背景流光量子动效 */
-        body::before {
-            content: '';
+        /* ==========================================================================
+           2. 真正的超大字节数据矩阵（无空壳，全数据实体注入）
+           ========================================================================== */
+        .cyber-grid-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                radial-gradient(transparent 50%, rgba(0,0,0,0.6)),
-                url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noise)" opacity="0.015"/%3E%3C/svg%3E');
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center;
+            mask-image: radial-gradient(circle at center, white, transparent 80%);
+            -webkit-mask-image: radial-gradient(circle at center, white, transparent 80%);
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* 极光极速动效粒子光幕 */
+        .aurora-layer {
+            position: fixed;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(rgba(147, 51, 234, 0.1) 0%, transparent 50%),
+                        radial-gradient(rgba(0, 242, 254, 0.08) 0%, transparent 40%);
+            animation: auroraRotate 30s linear infinite;
             z-index: -1;
+            pointer-events: none;
         }
 
-        /* 主容器 */
-        .container {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 30px;
-            background: rgba(20, 15, 38, 0.7);
-            border-radius: 24px;
-            border: 1px solid rgba(147, 51, 234, 0.3);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 
-                        inset 0 0 30px rgba(147, 51, 234, 0.1);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+        @keyframes auroraRotate {
+            0% { transform: rotate(0deg) translate(0, 0); }
+            50% { transform: rotate(180deg) translate(-50px, 30px); }
+            100% { transform: rotate(360deg) translate(0, 0); }
         }
 
-        /* 头部大标题与小标题区 */
+        /* 主视窗控制容器 */
+        .main-frame {
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* ==========================================================================
+           3. 粒子霓虹数字科技头部 (Dazzling Header)
+           ========================================================================== */
         header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             position: relative;
+            padding: 30px;
+            background: linear-gradient(180deg, rgba(20, 15, 45, 0.6) 0%, rgba(10, 5, 25, 0.9) 100%);
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            border-radius: 24px;
+            box-shadow: 0 0 40px rgba(147, 51, 234, 0.25), inset 0 0 20px rgba(147, 51, 234, 0.1);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 10%; width: 80%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--clr-good), var(--clr-wolf), transparent);
         }
 
         header h1 {
-            font-size: 3.5rem;
+            font-size: 4.5rem;
             font-weight: 900;
-            letter-spacing: 4px;
+            letter-spacing: 12px;
             text-transform: uppercase;
-            background: linear-gradient(135deg, #ff2a5f 0%, #9333ea 50%, #00f2fe 100%);
+            background: linear-gradient(90deg, #ff2a5f, #ff7e40, #9333ea, #00f2fe, #22c55e);
+            background-size: 400% 400%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 4px 15px rgba(147, 51, 234, 0.6));
-            animation: pulseGlow 3s infinite alternate;
+            animation: textFlowGradient 8s ease infinite;
+            filter: drop-shadow(0 2px 20px rgba(0, 242, 254, 0.4));
         }
 
         header h2 {
-            font-size: 1.4rem;
+            font-size: 1.8rem;
             color: #00f2fe;
-            font-weight: 400;
-            margin-top: 10px;
-            letter-spacing: 6px;
-            text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+            font-weight: 300;
+            margin-top: 15px;
+            letter-spacing: 16px;
+            text-transform: uppercase;
+            text-shadow: 0 0 15px var(--clr-good-glow);
         }
 
-        @keyframes pulseGlow {
-            0% { filter: drop-shadow(0 4px 10px rgba(147, 51, 234, 0.5)); }
-            100% { filter: drop-shadow(0 4px 25px rgba(255, 42, 95, 0.8)); }
+        @keyframes textFlowGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* 极其炫酷的控制台导航按钮 */
-        .nav-tabs {
-            display: flex;
-            justify-content: space-between;
-            gap: 15px;
+        /* ==========================================================================
+           4. 四大顶级全息量子动态按钮控制架
+           ========================================================================== */
+        .control-panel {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
             margin-bottom: 40px;
-            flex-wrap: wrap;
         }
 
-        .tab-btn {
-            flex: 1;
-            min-width: 160px;
-            padding: 15px 20px;
-            background: linear-gradient(145deg, rgba(30, 20, 60, 0.8), rgba(15, 10, 30, 0.8));
+        .btn-holo {
+            background: linear-gradient(135deg, rgba(25, 18, 55, 0.8) 0%, rgba(13, 8, 32, 0.9) 100%);
             border: 1px solid rgba(147, 51, 234, 0.4);
-            border-radius: 12px;
+            padding: 24px 20px;
+            font-size: 1.25rem;
+            font-weight: 700;
             color: #a5b4fc;
-            font-size: 1.1rem;
-            font-weight: 600;
+            border-radius: 16px;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             position: relative;
             overflow: hidden;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+            letter-spacing: 4px;
         }
 
-        .tab-btn::before {
+        /* 极其复杂的流光四边形边缘反射效 */
+        .btn-holo::before {
             content: '';
             position: absolute;
-            top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.2), transparent);
-            transition: all 0.6s;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(from 0deg, transparent, var(--clr-good), transparent 30%, var(--clr-wolf), transparent 70%, var(--clr-good));
+            animation: borderRotate 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: 1;
         }
 
-        .tab-btn:hover::before {
-            left: 100%;
+        .btn-holo::after {
+            content: '';
+            position: absolute;
+            top: 2px; left: 2px; right: 2px; bottom: 2px;
+            background: #0d0822;
+            border-radius: 14px;
+            z-index: 2;
+            transition: background 0.4s;
         }
 
-        .tab-btn:hover {
-            color: #ffffff;
-            border-color: #00f2fe;
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
-            transform: translateY(-3px);
+        .btn-holo span {
+            position: relative;
+            z-index: 3;
+            display: block;
+            transition: all 0.4s;
         }
 
-        .tab-btn.active {
-            background: linear-gradient(135deg, #9333ea 0%, #6366f1 100%);
+        @keyframes borderRotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 按钮悬停与激活的各种炫彩滤镜细节 */
+        .btn-holo:hover {
             color: #fff;
-            border-color: #c084fc;
-            box-shadow: 0 0 25px rgba(147, 51, 234, 0.6), inset 0 0 10px rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(147, 51, 234, 0.4);
         }
 
-        /* 页面内容板块切换系统 */
-        .tab-content {
+        .btn-holo:hover::before {
+            opacity: 1;
+        }
+
+        .btn-holo:hover::after {
+            background: #130b30;
+        }
+
+        .btn-holo.active {
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 0 30px var(--clr-good-glow);
+        }
+
+        .btn-holo.active::before {
+            opacity: 1;
+            animation-duration: 1.5s; /* 激活时炫彩转速极快 */
+        }
+        .btn-holo.active::after {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.4) 0%, rgba(6, 2, 18, 0.9) 100%);
+        }
+        .btn-holo.active span {
+            text-shadow: 0 0 10px #fff;
+            letter-spacing: 6px;
+        }
+
+        /* ==========================================================================
+           5. 模块视图核心外壳布局
+           ========================================================================== */
+        .view-frame {
+            background: rgba(13, 9, 33, 0.75);
+            border: 1px solid rgba(147, 51, 234, 0.25);
+            border-radius: 24px;
+            padding: 40px;
+            min-height: 450px;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+        }
+
+        .view-pane {
             display: none;
-            animation: fadeIn 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+            animation: viewEnter 0.6s cubic-bezier(0.215, 0.610, 0.355, 1) forwards;
         }
 
-        .tab-content.active {
+        .view-pane.active {
             display: block;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); filter: blur(5px); }
-            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        @keyframes viewEnter {
+            0% { opacity: 0; transform: translateY(30px) scale(0.98); filter: blur(10px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
         }
 
-        /* 全局卡片基础样式 */
-        .panel-card {
-            background: rgba(30, 27, 57, 0.5);
-            border-radius: 16px;
-            padding: 25px;
-            border-left: 5px solid #9333ea;
-            margin-bottom: 25px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-        }
-
-        h3.section-title {
-            font-size: 1.5rem;
-            color: #c084fc;
-            margin-bottom: 20px;
+        .section-headline {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 30px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            border-bottom: 1px solid rgba(147, 51, 234, 0.2);
-            padding-bottom: 8px;
-        }
-
-        /* 基本信息板块细节 */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 25px;
-        }
-
-        .info-item {
-            background: rgba(15, 12, 30, 0.6);
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: 0.3s;
-        }
-
-        .info-item:hover {
-            background: rgba(255, 255, 255, 0.03);
-            border-color: rgba(147, 51, 234, 0.3);
-        }
-
-        .info-label {
-            font-size: 0.9rem;
-            color: #94a3b8;
-            margin-bottom: 6px;
+            gap: 15px;
             text-transform: uppercase;
-        }
-
-        .info-value {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        .status-badge {
-            display: inline-block;
-            background: rgba(34, 197, 94, 0.15);
-            color: #4ade80;
-            padding: 2px 10px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
-        }
-
-        .link-style {
-            color: #00f2fe;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-        .link-style:hover {
-            color: #38bdf8;
-            text-shadow: 0 0 8px rgba(0, 242, 254, 0.5);
-        }
-
-        .intro-text {
-            line-height: 1.8;
-            color: #cbd5e1;
-            font-size: 1.1rem;
-        }
-
-        /* 核心教程阶段样式 */
-        .phase-header {
-            font-size: 1.4rem;
-            color: #00f2fe;
-            margin: 15px 0 8px 0;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-        .phase-desc {
-            color: #94a3b8;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        /* 阵营卡片排版 */
-        .faction-container {
-            margin-top: 25px;
-        }
-
-        .faction-title {
-            font-size: 1.4rem;
-            padding: 6px 14px;
-            border-radius: 6px;
-            display: inline-block;
-            margin-bottom: 15px;
-            font-weight: bold;
             letter-spacing: 2px;
         }
 
-        .faction-good { background: rgba(14, 116, 144, 0.3); color: #38bdf8; border: 1px solid rgba(14, 116, 144, 0.5); }
-        .faction-wolf { background: rgba(185, 28, 28, 0.3); color: #f87171; border: 1px solid rgba(185, 28, 28, 0.5); }
-        .faction-neutral { background: rgba(161, 98, 7, 0.3); color: #fbbf24; border: 1px solid rgba(161, 98, 7, 0.5); }
-
-        .role-block {
-            background: rgba(10, 8, 20, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 18px;
-            margin-bottom: 15px;
-            transition: transform 0.3s, border-color 0.3s;
-        }
-        .role-block:hover {
-            transform: scale(1.01);
-            border-color: rgba(255, 255, 255, 0.15);
+        .section-headline::before {
+            content: '';
+            width: 6px;
+            height: 30px;
+            background: linear-gradient(180deg, var(--clr-good), var(--clr-wolf));
+            border-radius: 3px;
+            display: inline-block;
         }
 
-        .role-name {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .faction-good .role-name { color: #7dd3fc; }
-        .faction-wolf .role-name { color: #fca5a5; }
-        .faction-neutral .role-name { color: #fde047; }
-
-        .role-desc {
-            color: #cbd5e1;
-            line-height: 1.6;
-            font-size: 1rem;
-        }
-
-        /* 克制矩阵样式 */
-        .matrix-grid {
+        /* ==========================================================================
+           6. 深度定制：基本信息矩阵 (Grid System)
+           ========================================================================== */
+        .info-matrix {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
 
-        .matrix-card {
-            background: rgba(20, 15, 35, 0.6);
-            border: 1px solid rgba(147, 51, 234, 0.2);
-            border-radius: 12px;
-            padding: 16px;
+        .info-cyber-card {
+            background: linear-gradient(145deg, rgba(20, 15, 40, 0.6) 0%, rgba(10, 6, 24, 0.8) 100%);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 30px;
+            position: relative;
+            transition: all 0.4s;
+            overflow: hidden;
+        }
+
+        .info-cyber-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--clr-good), transparent);
+            transition: all 0.4s;
+            opacity: 0;
+        }
+
+        .info-cyber-card:hover {
+            border-color: rgba(0, 242, 254, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0, 242, 254, 0.1);
+        }
+
+        .info-cyber-card:hover::before {
+            opacity: 1;
+        }
+
+        .info-tag {
+            font-size: 0.85rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+        }
+
+        .info-main-val {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        /* 呼吸炫彩灯盾牌 */
+        .dns-active-glow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(34, 197, 94, 0.1);
+            color: #4ade80;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 1rem;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
+            animation: pulseGreen 2s infinite;
+        }
+
+        @keyframes pulseGreen {
+            0% { box-shadow: 0 0 10px rgba(34, 197, 94, 0.2); }
+            50% { box-shadow: 0 0 25px rgba(34, 197, 94, 0.5); }
+            100% { box-shadow: 0 0 10px rgba(34, 197, 94, 0.2); }
+        }
+
+        .cyber-link {
+            color: var(--clr-good);
+            text-decoration: none;
+            position: relative;
             transition: 0.3s;
         }
-        .matrix-card:hover {
-            box-shadow: 0 5px 15px rgba(147, 51, 234, 0.2);
-            border-color: rgba(147, 51, 234, 0.5);
+        .cyber-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0; width: 0; height: 1px;
+            background: var(--clr-good);
+            transition: width 0.3s;
+        }
+        .cyber-link:hover {
+            text-shadow: 0 0 10px var(--clr-good-glow);
+        }
+        .cyber-link:hover::after {
+            width: 100%;
         }
 
-        .matrix-role-title {
-            font-size: 1.2rem;
-            font-weight: bold;
+        /* ==========================================================================
+           7. 深度定制：核心教程多级引擎架构 (Phase Navigation)
+           ========================================================================== */
+        .tutorial-sub-nav {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 35px;
+            background: rgba(10, 5, 25, 0.6);
+            padding: 10px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .sub-btn {
+            flex: 1;
+            padding: 16px;
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .sub-btn.active {
+            background: linear-gradient(90deg, rgba(147, 51, 234, 0.3), rgba(0, 242, 254, 0.2));
             color: #fff;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 6px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 5px rgba(255,255,255,0.2);
+            box-shadow: inset 0 0 15px rgba(0, 242, 254, 0.2);
+            border: 1px solid rgba(0, 242, 254, 0.2);
         }
 
-        .matrix-line {
+        .phase-container {
+            display: none;
+            animation: viewEnter 0.5s ease forwards;
+        }
+        .phase-container.active {
+            display: block;
+        }
+
+        .banner-box {
+            background: linear-gradient(90deg, rgba(147, 51, 234, 0.2), transparent);
+            padding: 20px;
+            border-left: 4px solid var(--clr-purp);
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 35px;
+        }
+        .banner-box h4 {
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+        .banner-box p {
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        /* 矩阵卡片阵营分类系统 */
+        .camp-section {
+            margin-bottom: 40px;
+        }
+
+        .camp-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            padding: 6px 16px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: inline-block;
+            letter-spacing: 2px;
+        }
+
+        .camp-good { background: rgba(0, 242, 254, 0.15); color: var(--clr-good); border: 1px solid rgba(0, 242, 254, 0.3); }
+        .camp-wolf { background: rgba(255, 42, 95, 0.15); color: var(--clr-wolf); border: 1px solid rgba(255, 42, 95, 0.3); }
+        .camp-neutral { background: rgba(255, 184, 0, 0.15); color: var(--clr-neutral); border: 1px solid rgba(255, 184, 0, 0.3); }
+
+        .role-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .role-holo-card {
+            background: rgba(16, 12, 38, 0.5);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .role-holo-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; right: 0; width: 30px; height: 30px;
+            background: linear-gradient(135deg, transparent 50%, rgba(255,255,255,0.05) 50%);
+            border-radius: 0 0 16px 0;
+        }
+
+        .camp-good .role-holo-card:hover { border-color: var(--clr-good); box-shadow: 0 10px 25px rgba(0, 242, 254, 0.15); transform: translateY(-3px); }
+        .camp-wolf .role-holo-card:hover { border-color: var(--clr-wolf); box-shadow: 0 10px 25px rgba(255, 42, 95, 0.15); transform: translateY(-3px); }
+        .camp-neutral .role-holo-card:hover { border-color: var(--clr-neutral); box-shadow: 0 10px 25px rgba(255, 184, 0, 0.15); transform: translateY(-3px); }
+
+        .role-header-line {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .camp-good .role-header-line { color: #7dd3fc; }
+        .camp-wolf .role-header-line { color: #fca5a5; }
+        .camp-neutral .role-header-line { color: #fde047; }
+
+        .role-body-text {
+            font-size: 0.98rem;
+            line-height: 1.7;
+            color: #cbd5e1;
+        }
+
+        /* 克制关系超级卡片阵列 */
+        .vs-matrix-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .vs-card {
+            background: rgba(18, 12, 42, 0.6);
+            border: 1px solid rgba(147, 51, 234, 0.15);
+            border-radius: 16px;
+            padding: 22px;
+            transition: all 0.3s;
+        }
+
+        .vs-card:hover {
+            border-color: rgba(147, 51, 234, 0.4);
+            background: rgba(22, 15, 50, 0.8);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+        }
+
+        .vs-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding-bottom: 10px;
+            margin-bottom: 14px;
+            letter-spacing: 1px;
+        }
+
+        .vs-line {
             font-size: 0.95rem;
-            margin: 6px 0;
-            line-height: 1.4;
+            margin-bottom: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
-        .mat-win { color: #4ade80; }
-        .mat-lose { color: #f87171; }
-        .mat-cond { color: #fbbf24; }
 
-        /* 移动端全面优化适配 */
-        @media (max-width: 768px) {
-            header h1 { font-size: 2.3rem; }
-            .nav-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-            .tab-btn { min-width: unset; padding: 12px 10px; font-size: 0.95rem; }
-            .container { padding: 15px; margin: 15px auto; }
+        .vs-line:last-child { margin-bottom: 0; }
+
+        .vs-lbl {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .vs-lbl.win { color: #22c55e; }
+        .vs-lbl.lose { color: #ef4444; }
+        .vs-lbl.cond { color: #eab308; }
+
+        .vs-val {
+            color: #e2e8f0;
+            padding-left: 4px;
+        }
+
+        /* ==========================================================================
+           8. 响应式布局极端调校
+           ========================================================================== */
+        @media (max-width: 1024px) {
+            .control-panel { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            header h1 { font-size: 3.2rem; }
+        }
+
+        @media (max-width: 640px) {
+            .control-panel { grid-template-columns: 1fr; gap: 12px; }
+            header h1 { font-size: 2.2rem; letter-spacing: 4px; }
+            header h2 { font-size: 1.2rem; letter-spacing: 8px; }
+            .view-frame { padding: 20px; border-radius: 16px; }
+            body { padding: 15px 10px; }
+            .tutorial-sub-nav { flex-direction: column; gap: 8px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- 头部大标题 -->
+    <!-- 粒子运动光底衬 -->
+    <div class="cyber-grid-bg"></div>
+    <div class="aurora-layer"></div>
+
+    <div class="main-frame">
+        <!-- 头部全息显示器 -->
         <header>
             <h1>狼人行动</h1>
             <h2>生化改图</h2>
         </header>
 
-        <!-- 极其炫酷的控制台导轨（四个按钮） -->
-        <div class="nav-tabs">
-            <button class="tab-btn active" onclick="switchTab('info-tab')">基本信息</button>
-            <button class="tab-btn" onclick="switchTab('intro-tab')">网站介绍</button>
-            <button class="tab-btn" onclick="switchTab('authors-tab')">作者团队</button>
-            <button class="tab-btn" onclick="switchTab('tutorial-tab')">核心教程</button>
+        <!-- 四个绝无仅有的粒子炫彩控制按钮 -->
+        <div class="control-panel">
+            <button class="btn-holo active" onclick="triggerPane('pane-info')"><span>基本信息</span></button>
+            <button class="btn-holo" onclick="triggerPane('pane-intro')"><span>网站介绍</span></button>
+            <button class="btn-holo" onclick="triggerPane('pane-authors')"><span>作者团队</span></button>
+            <button class="btn-holo" onclick="triggerPane('pane-tutorial')"><span>核心教程</span></button>
         </div>
 
-        <!-- 选项卡内容系统 -->
-        
-        <!-- 1. 基本信息 -->
-        <div id="info-tab" class="tab-content active">
-            <div class="panel-card">
-                <h3 class="section-title">基本信息</h3>
-                <div class="info-grid">
-                    <div class="info-item">
-                        <div class="info-label">DNS服务</div>
-                        <div class="info-value"><span class="status-badge">开启</span></div>
+        <!-- 全息主视窗壳体 -->
+        <div class="view-frame">
+            
+            <!-- 栏目一：基本信息 -->
+            <div id="pane-info" class="view-pane active">
+                <h3 class="section-headline">基本信息</h3>
+                <div class="info-matrix">
+                    <div class="info-cyber-card">
+                        <div class="info-tag">DNS Network</div>
+                        <div class="info-main-val" style="margin-top: 5px;">
+                            <span class="dns-active-glow">DNS服务：开启</span>
+                        </div>
                     </div>
-                    <div class="info-item">
-                        <div class="info-label">官网</div>
-                        <div class="info-value"><a href="https://shenghi.github.io" target="_blank" class="link-style">shengh.github.io</a></div>
+                    <div class="info-cyber-card">
+                        <div class="info-tag">Official Website</div>
+                        <div class="info-main-val">
+                            <a href="https://shengh.github.io" target="_blank" class="cyber-link">shengh.github.io</a>
+                        </div>
                     </div>
-                    <div class="info-item">
-                        <div class="info-label">QQ交流群</div>
-                        <div class="info-value" style="color: #00f2fe;">1083108292</div>
+                    <div class="info-cyber-card">
+                        <div class="info-tag">QQ Core Group</div>
+                        <div class="info-main-val" style="color: #ffb800; text-shadow: 0 0 10px rgba(255,184,0,0.3);">
+                            1083108292
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- 2. 网站介绍 -->
-        <div id="intro-tab" class="tab-content">
-            <div class="panel-card" style="border-left-color: #00f2fe;">
-                <h3 class="section-title" style="color: #00f2fe;">网站介绍</h3>
-                <p class="intro-text">本网站是给游玩过生化改图的狼人行动中的玩家特地准备的</p>
+            <!-- 栏目二：网站介绍 -->
+            <div id="pane-intro" class="view-pane">
+                <h3 class="section-headline">网站介绍</h3>
+                <div class="info-cyber-card" style="border-left: 4px solid var(--clr-good); background: rgba(0, 242, 254, 0.02);">
+                    <p style="font-size: 1.2rem; line-height: 2; color: #cbd5e1; letter-spacing: 1px;">
+                        本网站是给游玩过生化改图的狼人行动中的玩家特地准备的
+                    </p>
+                </div>
             </div>
-        </div>
 
-        <!-- 3. 作者团队 -->
-        <div id="authors-tab" class="tab-content">
-            <div class="panel-card" style="border-left-color: #ff2a5f;">
-                <h3 class="section-title" style="color: #ff2a5f;">作者团队</h3>
-                <div class="info-grid">
-                    <div class="info-item" style="border-color: rgba(255, 42, 95, 0.2);">
-                        <div class="info-label" style="color: #ff2a5f;">主作者</div>
-                        <div class="info-value">生化 生化导入组</div>
+            <!-- 栏目三：作者团队 -->
+            <div id="pane-authors" class="view-pane">
+                <h3 class="section-headline">作者团队</h3>
+                <div class="info-matrix" style="margin-bottom: 25px;">
+                    <div class="info-cyber-card" style="border-left: 4px solid var(--clr-wolf);">
+                        <div class="info-tag" style="color: var(--clr-wolf);">Core Chief Master / 主作者</div>
+                        <div class="info-main-val" style="letter-spacing: 1px;">生化 生化导入组</div>
                     </div>
-                    <div class="info-item" style="border-color: rgba(255, 42, 95, 0.2);">
-                        <div class="info-label" style="color: #ff2a5f;">副作者</div>
-                        <div class="info-value" style="font-size: 1.05rem; line-height: 1.5; color: #cbd5e1;">
+                    <div class="info-cyber-card" style="border-left: 4px solid var(--clr-neutral);">
+                        <div class="info-tag" style="color: var(--clr-neutral);">Deputy Developers / 副作者</div>
+                        <div class="info-main-val" style="font-size: 1.2rem; line-height: 1.8; color: #cbd5e1; font-weight: 500;">
                             烤肉m狗go膳食<br>可爱的修狗_<br>香貓老弟
                         </div>
                     </div>
                 </div>
-                <p style="color: #94a3b8; font-style: italic; margin-top: 10px;">“作者是一个地图必不可少的部分”</p>
+                <div class="banner-box" style="border-left-color: #64748b; background: rgba(255,255,255,0.01);">
+                    <p style="font-style: italic; color: #94a3b8; font-size: 1.05rem;">“作者是一个地图必不可少的部分”</p>
+                </div>
             </div>
-        </div>
 
-        <!-- 4. 核心教程 -->
-        <div id="tutorial-tab" class="tab-content">
-            <div class="panel-card" style="border-left-color: #fbbf24;">
-                <h3 class="section-title" style="color: #fbbf24;">核心教程</h3>
+            <!-- 栏目四：核心教程 (双层动态编译外壳) -->
+            <div id="pane-tutorial" class="view-pane">
+                <h3 class="section-headline">核心教程</h3>
                 
-                <!-- 内部子菜单控制架构 -->
-                <div class="nav-tabs" style="margin-bottom: 25px; gap: 10px;">
-                    <button id="p1-btn" class="tab-btn active" style="font-size: 1rem; padding: 10px;" onclick="switchPhase(1)">phase one</button>
-                    <button id="p2-btn" class="tab-btn" style="font-size: 1rem; padding: 10px;" onclick="switchPhase(2)">phase two</button>
+                <!-- 二级分流控制核心 -->
+                <div class="tutorial-sub-nav">
+                    <button id="sub-p1" class="sub-btn active" onclick="switchPhaseCore(1)">phase one</button>
+                    <button id="sub-p2" class="sub-btn" onclick="switchPhaseCore(2)">phase two</button>
                 </div>
 
-                <!-- Phase One 界面 -->
-                <div id="phase-one-content" style="display: block;">
-                    <div class="phase-header">phase one</div>
-                    <div class="phase-desc">学习基础的角色认知<br>角色是狼人行动中必不可少的部分 没有了角色 就没有了乐趣</div>
-                    
-                    <!-- 好人阵营 -->
-                    <div class="faction-container faction-good">
-                        <div class="faction-title">好人</div>
-                        
-                        <div class="role-block">
-                            <div class="role-name">女巫</div>
-                            <div class="role-desc">使用地图定位器 第一次将最近的人毒杀 第二次将随机的好人救活</div>
-                        </div>
-                        
-                        <div class="role-block">
-                            <div class="role-name">预言家</div>
-                            <div class="role-desc">可以查验一人 拥有侦探标签 可以购买盾牌和新的预言次数哦</div>
-                        </div>
-                        
-                        <div class="role-block">
-                            <div class="role-name">骑士</div>
-                            <div class="role-desc">对最近的人发起决斗 如果其是好人 则你死亡 如果其是狼人 你缴械其所有技能和秒刀 对其造成缓慢X效果2s 你获得速度加成和蓝色秒刀</div>
-                        </div>
-                        
-                        <div class="role-block">
-                            <div class="role-name">守卫</div>
-                            <div class="role-desc">守护一人 如果其是狼人 守护失效 如果其好人 当其死亡后 你传送到他的位置 并让他复活 你还有两次主动传送到他面前的机会（狼人也可以） 你可以保c 也可以传送敌人</div>
-                        </div>
-                        
-                        <div class="role-block">
-                            <div class="role-name">定序王子</div>
-                            <div class="role-desc">禁止PVP60秒 期间玩家任意活动 期间包含杀伤性的武器及技能除女巫外全部无效</div>
-                        </div>
-                        
-                        <div class="role-block">
-                            <div class="role-name">猎人</div>
-                            <div class="role-desc">当你死亡后 你获得12个跑鞋和一把蓝色秒杀刀 当你复活时 若有狼人死亡 你继续死亡</div>
+                <!-- Phase One 阵营数据块 -->
+                <div id="phase-one-block" class="phase-container active">
+                    <div class="banner-box">
+                        <h4>phase one</h4>
+                        <p>学习基础的角色认知<br>角色是狼人行动中必不可少的部分 没有了角色 就没有了乐趣</p>
+                    </div>
+
+                    <!-- 好人方 -->
+                    <div class="camp-section camp-good">
+                        <div class="camp-title">好人</div>
+                        <div class="role-grid">
+                            <div class="role-holo-card">
+                                <div class="role-header-line"><span>女巫</span></div>
+                                <div class="role-body-text">使用地图定位器 第一次将最近的人毒杀 第二次将随机的好人救活</div>
+                            </div>
+                            <div class="role-holo-card">
+                                <div class="role-header-line"><span>预言家</span></div>
+                                <div class="role-body-text">可以查验一人 拥有侦探标签 可以购买盾牌和新的预言次数哦</div>
+                            </div>
+                            <div class="role-holo-card">
+                                <div class="role-header-line"><span>骑士</span></div>
+                                <div class="role-body-text">对最近的人发起决斗 如果其是好人 则你死亡 如果其是狼人 你缴械其所有技能和秒刀 对其造成缓慢X效果2s 你获得速度加成和蓝色秒刀</div>
+                            </div>
+                            <div class="role-holo-card">
+                                <div class="role-header-line"><span>守卫</span></div>
+                                <div class="role-body-text">守护一人 如果其是狼人 守护失效 如果其是好人 当其死亡后 你传送到他的位置 并让他复活 你还有两次主动传送到他面前的机会（狼人也可以） 你可以保c 也可以传送敌人</div>
+                            </div>
+                            <div class="role-holo-card">
+                                <div class="role-header-line"><span>定序王子</span></div>
+                                <div class="role-body-text">禁止PVP60秒 期间玩家任意活动 期间包含杀伤性的武器及技能除女巫外全部无效</div>
+                            </div>
+                            <div class="role-holo-card">
+                                <div class="role-header-line"><span>猎人</span></div>
+                                <div class="role-body-text">当你死亡后 你获得12个跑鞋和一把蓝色秒杀刀 当你复活时 若有狼人死亡 你继续死亡</div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- 狼人阵营 -->
-                    <div class="faction-container faction-wolf">
-                        <div class="faction-title">狼人</div>
-                        
-                        <div class="role-block">
-                            <div class="role-name">白狼王</div>
-                            <div class="role-desc">发动一段技能后获得加速 发动二段技能后可以造成大规模爆炸</div>
-                        </div>
-                        
-                        <div class="role-block">
-                            <div class="role-name">蚀时狼妃</div>
-                            <div class="role-desc">和一个人互换位置</div>
-                        </div>
-                        
-                        <div class="role-block">
-                            <div class="role-name">狼美人</div>
-                            <div class="role-desc">在游戏中 你可以诱惑一个人 直至你死亡后 他代替你死亡 且你清空背包变为正常平民出装 并传送到出生点</div>
+                    <!-- 狼人方 -->
+                    <div class="camp-section camp-wolf">
+                        <div class="camp-title">狼人</div>
+                        <div class="role-grid">
+                            <div class="role-holo-card">
+                                <div class="role-header-line"><span>白狼王</span></div>
+                                <div class="role-body-text">发动一段技能后获得加速 发动二段技能后可以造成大规模爆炸</div>
+                            </div>
+                            <div class="role-holo-card">
+                                <div class="role-header-line"><span>蚀时狼妃</span></div>
+                                <div class="role-body-text">和一个人互换位置</div>
+                            </div>
+                            <div class="role-holo-card">
+                                <div class="role-header-line"><span>狼美人</span></div>
+                                <div class="role-body-text">在游戏中 你可以诱惑一个人 直至你死亡后 他代替你死亡 且你清空背包变为正常平民出装 并传送到出生点</div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- 中立阵营 -->
-                    <div class="faction-container faction-neutral">
-                        <div class="faction-title">中立</div>
-                        
-                        <div class="role-block">
-                            <div class="role-name">墙头草</div>
-                            <div class="role-desc">你手里拥有红色秒杀刀 当你使用秒杀刀后 你的阵营变为狼人阵营 反之则为好人阵营</div>
+                    <!-- 中立方 -->
+                    <div class="camp-section camp-neutral">
+                        <div class="camp-title">中立</div>
+                        <div class="role-grid">
+                            <div class="role-holo-card">
+                                <div class="role-header-line"><span>墙头草</span></div>
+                                <div class="role-body-text">你手里拥有红色秒杀刀 当你使用秒杀刀后 你的阵营变为狼人阵营 反之则为好人阵营</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Phase Two 界面 -->
-                <div id="phase-two-content" style="display: none;">
-                    <div class="phase-header">phase two</div>
-                    <div class="phase-desc">得知克制<br>角色之间互相存在克制 这也是角色最痛苦的一点</div>
-                    
-                    <div class="matrix-grid">
-                        <div class="matrix-card">
-                            <div class="matrix-role-title" style="color: #fca5a5;">白狼王</div>
-                            <div class="matrix-line mat-win">克制：预言家</div>
-                            <div class="matrix-line mat-lose">被克制：女巫 骑士 猎人</div>
+                <!-- Phase Two 克制矩阵 -->
+                <div id="phase-two-block" class="phase-container">
+                    <div class="banner-box" style="border-left-color: var(--clr-wolf);">
+                        <h4>phase two</h4>
+                        <p>得知克制<br>角色之间互相存在克制 这也是角色最痛苦的一点</p>
+                    </div>
+
+                    <div class="vs-matrix-container">
+                        <div class="vs-card">
+                            <div class="vs-title" style="color: #fca5a5;">白狼王</div>
+                            <div class="vs-line"><span class="vs-lbl win">克制</span><span class="vs-val">预言家</span></div>
+                            <div class="vs-line"><span class="vs-lbl lose">被克制</span><span class="vs-val">女巫 骑士 猎人</span></div>
                         </div>
 
-                        <div class="matrix-card">
-                            <div class="matrix-role-title" style="color: #7dd3fc;">预言家</div>
-                            <div class="matrix-line mat-win">克制：蚀时狼妃</div>
-                            <div class="matrix-line mat-lose">被克制：狼美人 白狼王</div>
+                        <div class="vs-card">
+                            <div class="vs-title" style="color: #7dd3fc;">预言家</div>
+                            <div class="vs-line"><span class="vs-lbl win">克制</span><span class="vs-val">蚀时狼妃</span></div>
+                            <div class="vs-line"><span class="vs-lbl lose">被克制</span><span class="vs-val">狼美人 白狼王</span></div>
                         </div>
 
-                        <div class="matrix-card">
-                            <div class="matrix-role-title" style="color: #7dd3fc;">骑士</div>
-                            <div class="matrix-line mat-win">克制：蚀时狼妃 白狼王</div>
-                            <div class="matrix-line mat-lose">被克制：狼美人</div>
+                        <div class="vs-card">
+                            <div class="vs-title" style="color: #7dd3fc;">骑士</div>
+                            <div class="vs-line"><span class="vs-lbl win">克制</span><span class="vs-val">蚀时狼妃 白狼王</span></div>
+                            <div class="vs-line"><span class="vs-lbl lose">被克制</span><span class="vs-val">狼美人</span></div>
                         </div>
 
-                        <div class="matrix-card">
-                            <div class="matrix-role-title" style="color: #7dd3fc;">守卫</div>
-                            <div class="matrix-line mat-win">克制：无明显的克制关系</div>
-                            <div class="matrix-line mat-lose">被克制：蚀时狼妃</div>
+                        <div class="vs-card">
+                            <div class="vs-title" style="color: #7dd3fc;">守卫</div>
+                            <div class="vs-line"><span class="vs-lbl win">克制</span><span class="vs-val">无明显的克制关系</span></div>
+                            <div class="vs-line"><span class="vs-lbl lose">被克制</span><span class="vs-val">蚀时狼妃</span></div>
                         </div>
 
-                        <div class="matrix-card">
-                            <div class="matrix-role-title" style="color: #7dd3fc;">猎人</div>
-                            <div class="matrix-line mat-win">克制：白狼王 蚀时狼妃</div>
-                            <div class="matrix-line mat-lose">被克制：狼美人</div>
+                        <div class="vs-card">
+                            <div class="vs-title" style="color: #7dd3fc;">猎人</div>
+                            <div class="vs-line"><span class="vs-lbl win">克制</span><span class="vs-val">白狼王 蚀时狼妃</span></div>
+                            <div class="vs-line"><span class="vs-lbl lose">被克制</span><span class="vs-val">狼美人</span></div>
                         </div>
 
-                        <div class="matrix-card">
-                            <div class="matrix-role-title" style="color: #7dd3fc;">女巫</div>
-                            <div class="matrix-line mat-win">克制：白狼王</div>
-                            <div class="matrix-line mat-lose">被克制：狼美人</div>
+                        <div class="vs-card">
+                            <div class="vs-title" style="color: #7dd3fc;">女巫</div>
+                            <div class="vs-line"><span class="vs-lbl win">克制</span><span class="vs-val">白狼王</span></div>
+                            <div class="vs-line"><span class="vs-lbl lose">被克制</span><span class="vs-val">狼美人</span></div>
                         </div>
 
-                        <div class="matrix-card">
-                            <div class="matrix-role-title" style="color: #7dd3fc;">定序王子</div>
-                            <div class="matrix-line mat-win">克制：队友（有条件的）</div>
-                            <div class="matrix-line mat-lose">被克制：无被克制关系</div>
+                        <div class="vs-card">
+                            <div class="vs-title" style="color: #7dd3fc;">定序王子</div>
+                            <div class="vs-line"><span class="vs-lbl win">克制</span><span class="vs-val">队友（有条件的）</span></div>
+                            <div class="vs-line"><span class="vs-lbl lose">被克制</span><span class="vs-val">无被克制关系</span></div>
                         </div>
 
-                        <div class="matrix-card">
-                            <div class="matrix-role-title" style="color: #fca5a5;">狼美人</div>
-                            <div class="matrix-line mat-win">克制：所有好人</div>
-                            <div class="matrix-line mat-lose">被克制：无被克制关系</div>
+                        <div class="vs-card">
+                            <div class="vs-title" style="color: #fca5a5;">狼美人</div>
+                            <div class="vs-line"><span class="vs-lbl win">克制</span><span class="vs-val">所有好人</span></div>
+                            <div class="vs-line"><span class="vs-lbl lose">被克制</span><span class="vs-val">无被克制关系</span></div>
                         </div>
 
-                        <div class="matrix-card">
-                            <div class="matrix-role-title" style="color: #fca5a5;">蚀时狼妃</div>
-                            <div class="matrix-line mat-win">克制：守卫</div>
-                            <div class="matrix-line mat-lose">被克制：除守卫，定序王子外所有角色</div>
+                        <div class="vs-card">
+                            <div class="vs-title" style="color: #fca5a5;">蚀时狼妃</div>
+                            <div class="vs-line"><span class="vs-lbl win">克制</span><span class="vs-val">守卫</span></div>
+                            <div class="vs-line"><span class="vs-lbl lose">被克制</span><span class="vs-val">除守卫，定序王子外所有角色</span></div>
                         </div>
 
-                        <div class="matrix-card">
-                            <div class="matrix-role-title" style="color: #fde047;">墙头草</div>
-                            <div class="matrix-line mat-win">克制：所有狼人，所有好人（有条件）</div>
-                            <div class="matrix-line mat-lose">被克制：所有狼人，所有好人（有条件）</div>
-                            <div class="matrix-line mat-cond">*有条件属于你归属哪一方</div>
+                        <div class="vs-card" style="border: 1px solid rgba(255, 184, 0, 0.3);">
+                            <div class="vs-title" style="color: #fde047;">墙头草</div>
+                            <div class="vs-line"><span class="vs-lbl win">克制</span><span class="vs-val">所有狼人，所有好人（有条件）</span></div>
+                            <div class="vs-line"><span class="vs-lbl lose">被克制</span><span class="vs-val">所有狼人，所有好人（有条件）</span></div>
+                            <div class="vs-line" style="margin-top: 10px; border-top: 1px dashed rgba(255,184,0,0.2); padding-top: 5px;"><span class="vs-lbl cond">*条件说明</span><span class="vs-val" style="color: #fde047; font-size: 0.85rem;">有条件属于你归属哪一方</span></div>
                         </div>
                     </div>
                 </div>
 
             </div>
-        </div>
 
+        </div>
     </div>
 
-    <!-- 前端核心控制交互引擎 -->
+    <!-- 交互底层核心引擎 -->
     <script>
-        // 主选项卡导航系统
-        function switchTab(tabId) {
-            // 移除所有内容及按钮的激活状态
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.querySelectorAll('.nav-tabs > .tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            // 激活当前选项卡及对应按钮
-            document.getElementById(tabId).classList.add('active');
+        function triggerPane(paneId) {
+            document.querySelectorAll('.view-pane').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.control-panel .btn-holo').forEach(b => b.classList.remove('active'));
             
-            // 精准匹配触发的按钮并高亮
-            const eventBtn = event.currentTarget;
-            if(eventBtn) {
-                eventBtn.classList.add('active');
+            document.getElementById(paneId).classList.add('active');
+            if(event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
             }
         }
 
-        // 核心教程内部 Phase 阶段快速跃迁
-        function switchPhase(phaseNum) {
-            const p1Content = document.getElementById('phase-one-content');
-            const p2Content = document.getElementById('phase-two-content');
-            const p1Btn = document.getElementById('p1-btn');
-            const p2Btn = document.getElementById('p2-btn');
+        function switchPhaseCore(phaseNum) {
+            const p1 = document.getElementById('phase-one-block');
+            const p2 = document.getElementById('phase-two-block');
+            const btn1 = document.getElementById('sub-p1');
+            const btn2 = document.getElementById('sub-p2');
 
             if(phaseNum === 1) {
-                p1Content.style.display = 'block';
-                p2Content.style.display = 'none';
-                p1Btn.classList.add('active');
-                p2Btn.classList.remove('active');
+                p1.classList.add('active');
+                p2.classList.remove('active');
+                btn1.classList.add('active');
+                btn2.classList.remove('active');
             } else {
-                p1Content.style.display = 'none';
-                p2Content.style.display = 'block';
-                p1Btn.classList.remove('active');
-                p2Btn.classList.add('active');
+                p1.classList.remove('active');
+                p2.classList.add('active');
+                btn1.classList.remove('active');
+                btn2.classList.add('active');
             }
-            // 阻止冒泡防止主选项卡混乱
             if(event) event.stopPropagation();
         }
     </script>
